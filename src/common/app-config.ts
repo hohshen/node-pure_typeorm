@@ -15,3 +15,6 @@ export const databaseProviders = [{
     ]
   })
 }]
+//ref:
+//http://hive.rinoy.in/creating-a-typescript-nodejs-express-app-using-typeorm-and-mysql-part2/
+//https://github.com/nestjs/nest/issues/175
