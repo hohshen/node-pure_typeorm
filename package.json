@@ -16,8 +16,18 @@
    "scripts": {
       "build": "rimraf dist && tsc -p tsconfig.build.json",
       "start": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/index.js\"",
+      "01":"ts-node src/ts/01connect",
+      "02":"ts-node src/ts/02table",
+      "03":"ts-node src/ts/03crud",
+      "04":"ts-node src/ts/04one2one",
+      "05":"ts-node src/ts/05one2m",
+      "06":"ts-node src/ts/06m2n",
       "dev": "ts-node src/index.ts",
       "docker": "docker-compose up --build",
-      "stop": "docker-compose down"
+      "stop": "docker-compose down",
+      "mg:gn":"typeorm migration:generate -n ALL",
+      "mg:cr":"typeorm migration:create -n GroupMember",
+      "mg:up":"typeorm migration:run",
+      "mg:dw":"typeorm migration:revert"
    }
 }

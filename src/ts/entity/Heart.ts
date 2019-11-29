@@ -10,7 +10,7 @@ export class Heart {
     @Column()
     name: string;
 
-    @OneToOne(type => User,user=>user.metadata)
+    @OneToOne(type => User,user=>user.heart)
     @JoinColumn()//fk
     user: User;
 }

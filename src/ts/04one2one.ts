@@ -19,7 +19,7 @@ const main = async () => {
   await HeartRep.save(heart);
 
   {//user find heart
-    const result = await UserRep.find({ relations: ["metadata"] });
+    const result = await UserRep.find({ relations: ["heart"] });
     console.log("UserRep", result);
   }
 
