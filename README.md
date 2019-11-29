@@ -21,7 +21,8 @@ Steps to run this project:
 ### How to write migration 
 * Only focus on origin database design (foreign and index...)
 * When tyeporm connect ,it will import and combine all entity.
-
+* migration tablename need to map to entity name,m to n table name is m_r_n
+* m to n,  group add user || user add group is ok
 ### Sequelize
 * Migration only focus on origin database design (foreign and index...)
 * .sequelizerc will bind migration , model and seeder.

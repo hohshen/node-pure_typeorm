@@ -4,12 +4,14 @@ export class Eye1575013895430 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<any> {
         await queryRunner.createTable(new Table({
-            name: "Eye",
+            name: "eye",
             columns: [
                 {
                     name: "id",
                     type: 'int',
                     isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: 'increment',
                 },
                 {
                     name: 'name',
@@ -22,20 +24,20 @@ export class Eye1575013895430 implements MigrationInterface {
             ]
         }))
 
-        await queryRunner.createIndex("Eye", new TableIndex({
+        await queryRunner.createIndex("eye", new TableIndex({
             name: 'MAKE_EYEID_BE_INDEX',
             columnNames: ['id']
         }));
-        await queryRunner.createForeignKey("Eye", new TableForeignKey({
+        await queryRunner.createForeignKey("eye", new TableForeignKey({
             columnNames: ["userId"],
             referencedColumnNames: ["id"],
-            referencedTableName: "User",
+            referencedTableName: "user",
             onDelete: "CASCADE"
         }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
-        await queryRunner.dropTable("Eye");
+        await queryRunner.dropTable("eye");
     }
 
 }
