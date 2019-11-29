@@ -1,7 +1,9 @@
 import "reflect-metadata";
-import {ConnectionOptions} from "typeorm";
- 
- export let dbOptions: ConnectionOptions = {
+import { createConnection } from "typeorm";
+
+export const databaseProviders = [{
+  provide: 'DbConnectionToken',
+  useFactory: async () => await createConnection({
     type: "mysql",
     host: "localhost",
     port: 30678,
@@ -9,6 +11,7 @@ import {ConnectionOptions} from "typeorm";
     password: "dev",
     database: "db",
     entities: [
-         "../entities/*.js"
+      "../entities/*{.ts,.js}"
     ]
-}
+  })
+}]
