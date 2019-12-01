@@ -1,8 +1,14 @@
-import { UserRepo } from "../repository/User";
+import { UserRepoInterface } from "../repository/User";
 import { User } from "../entity/User";
+import { injectable, inject } from "inversify";
+import { TYPES } from "../Types";
+export interface UserServiceInterface {
+    user()
+}
+@injectable()
 export default class UserService {
-    userRepo: UserRepo;
-    constructor(userRepo: UserRepo) {
+    // userRepo: UserRepo;
+    constructor(@inject(TYPES.UserRepoInterface) private userRepo: UserRepoInterface) {
         this.userRepo = userRepo;
     }
     async user() {
@@ -18,7 +24,7 @@ export default class UserService {
             const all = await this.userRepo.findAll();
             return { c1, c2, u, r, d, all };
         } catch (e) {
-           throw e;
+            throw e;
         }
     }
 }
