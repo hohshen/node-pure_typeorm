@@ -7,7 +7,6 @@ export interface UserServiceInterface {
 }
 @injectable()
 export default class UserService {
-    // userRepo: UserRepo;
     constructor(@inject(TYPES.UserRepoInterface) private userRepo: UserRepoInterface) {
         this.userRepo = userRepo;
     }

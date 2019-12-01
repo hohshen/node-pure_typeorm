@@ -27,3 +27,7 @@ Steps to run this project:
 * Migration only focus on origin database design (foreign and index...)
 * .sequelizerc will bind migration , model and seeder.
 * because relaction at each model. sequelize need to import (first second ... is important)every model and sequelize.sync() again so if you want don't open sync need to bind migration , model and seeder together.
+
+### Ioc
+* ref:https://www.youtube.com/watch?v=CB9ejEsmTZY&t=341s
+* ref:https://github.com/vykes-mac/clean-authentication-flow/blob/master/src/entrypoint/controllers/AuthController.ts
