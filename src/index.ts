@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import seed from './routes/seed';
-import user from './routes/user';
+import se from './routes/se';
 import { createConnection } from "typeorm";
 import { databaseProviders } from "./common/app-config";
 
@@ -9,8 +8,8 @@ import { databaseProviders } from "./common/app-config";
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/seed', seed);
-app.use('/user', user);
+
+app.use('/se', se);
 app.get('/', (req, res) => {
   res.json("hello")
 })

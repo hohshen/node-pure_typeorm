@@ -1,7 +1,6 @@
 version: "3"
 
 services:
-  
   database:
     image: mysql:5.7
     container_name: mysqlContainer
@@ -18,8 +17,8 @@ services:
       - "30678:3306"
     expose:
       - "30678"
-    networks:
-      - server_network   
+    # networks:
+    #   - server_network
 
   myadmin:
     image: phpmyadmin/phpmyadmin
@@ -35,8 +34,8 @@ services:
     restart: always
     depends_on:
       - database
-    networks:
-      - server_network
+    # networks:
+    #   - server_network
 
   # app:
   #   build:
@@ -61,8 +60,7 @@ services:
 volumes:
   db-data:
     driver: local
-
-networks:
-  server_network:
-    external:
-      name: my_network
+# networks:
+#   server_network:
+#     external:
+#       name: my_network
