@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
-    "start": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/src/app.js\"",
+    "start": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/src/index.js\"",
     "dev": "ts-node src/app.ts",
     "01": "ts-node src/ts/01connect",
     "02": "ts-node src/ts/02table",

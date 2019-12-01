@@ -1,15 +1,27 @@
-import { UserRepo } from "../repository/User";
-import { EyeRepo } from "../repository/Eye";
+import { UserRepoInterface } from "../repository/User";
+import { EyeRepoInterface } from "../repository/Eye";
 import { User } from "../entity/User";
 import { Eye } from "../entity/Eye";
-
+import { TYPES } from "../Types";
+import { injectable, inject } from "inversify";
+export interface EyeServiceInterface {
+    eye()
+}
+@injectable()
 export default class EyeService {
-    userRepo: UserRepo;
-    eyeRepo: EyeRepo
-    constructor(userRepo: UserRepo, eyeRepo: EyeRepo) {
+    constructor(
+        @inject(TYPES.UserRepoInterface) private userRepo: UserRepoInterface,
+        @inject(TYPES.EyeRepoInterface) private eyeRepo: EyeRepoInterface,
+    ) {
         this.userRepo = userRepo;
         this.eyeRepo = eyeRepo;
     }
+    // userRepo: UserRepo;
+    // eyeRepo: EyeRepo
+    // constructor(userRepo: UserRepo, eyeRepo: EyeRepo) {
+    //     this.userRepo = userRepo;
+    //     this.eyeRepo = eyeRepo;
+    // }
     async eye() {
         /*CreateUser*/
         const user = new User();

@@ -1,15 +1,27 @@
-import { GroupRepo } from "../repository/Group";
-import { UserRepo } from "../repository/User";
+import { GroupRepoInterface } from "../repository/Group";
+import { UserRepoInterface } from "../repository/User";
 import { Group } from "../entity/Group";
 import { User } from "../entity/User";
-
+import { injectable, inject } from "inversify";
+import { TYPES } from "../Types";
+export interface GroupServiceInterface {
+    group()
+}
+@injectable()
 export default class GroupService {
-    userRepo: UserRepo;
-    groupRepo: GroupRepo
-    constructor(userRepo: UserRepo, groupRepo: GroupRepo) {
+    constructor(
+        @inject(TYPES.UserRepoInterface) private userRepo: UserRepoInterface,
+        @inject(TYPES.GroupRepoInterface) private groupRepo: GroupRepoInterface,
+    ) {
         this.userRepo = userRepo;
         this.groupRepo = groupRepo;
     }
+    // userRepo: UserRepo;
+    // groupRepo: GroupRepo
+    // constructor(userRepo: UserRepo, groupRepo: GroupRepo) {
+    //     this.userRepo = userRepo;
+    //     this.groupRepo = groupRepo;
+    // }
     async group() {
         /*CreateUser*/
         const user1 = new User();

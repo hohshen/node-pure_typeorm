@@ -1,7 +1,15 @@
 import { Eye } from "../entity/Eye";
 import { getRepository } from "typeorm";
-
-export class EyeRepo {
+import { injectable } from "inversify";
+export interface EyeRepoInterface {
+  setEye(eye: Eye);
+  getEye();
+  getEyeUser();
+  updEye(id: number, name: string);
+  delEye(id: number);
+}
+@injectable()
+export class EyeRepo implements EyeRepoInterface {
   eyeRepo;
   constructor() {
     this.eyeRepo = getRepository(Eye);
@@ -18,8 +26,8 @@ export class EyeRepo {
     const result = this.eyeRepo.find({ relations: ["user"] });
     return result;
   }
-  async updEye(id:number,name:string){
-    const result =this.eyeRepo.update(id,{ name: name } )
+  async updEye(id: number, name: string) {
+    const result = this.eyeRepo.update(id, { name: name })
     return result;
   }
   async delEye(id: number) {

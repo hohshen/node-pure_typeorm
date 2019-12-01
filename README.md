@@ -31,3 +31,4 @@ Steps to run this project:
 ### Ioc
 * ref:https://www.youtube.com/watch?v=CB9ejEsmTZY&t=341s
 * ref:https://github.com/vykes-mac/clean-authentication-flow/blob/master/src/entrypoint/controllers/AuthController.ts
+* ref:https://github.com/hanymorcos/typescript-express-inversify-typeorm-mysql/blob/master/server/bootstrap.ts

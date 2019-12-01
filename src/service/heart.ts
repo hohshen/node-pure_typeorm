@@ -1,15 +1,27 @@
-import { UserRepo } from "../repository/User";
-import { HeartRepo } from "../repository/Heart";
+import { UserRepoInterface } from "../repository/User";
+import { HeartRepoInterface } from "../repository/Heart";
 import { User } from "../entity/User";
 import { Heart } from "../entity/Heart";
-
+import { injectable, inject } from "inversify";
+import { TYPES } from "../Types";
+export interface HeartServiceInterface {
+    heart()
+}
+@injectable()
 export default class HeartService {
-    userRepo: UserRepo;
-    heartRepo: HeartRepo
-    constructor(userRepo: UserRepo, heartRepo: HeartRepo) {
+    constructor(
+        @inject(TYPES.UserRepoInterface) private userRepo: UserRepoInterface,
+        @inject(TYPES.HeartRepoInterface) private heartRepo: HeartRepoInterface,
+    ) {
         this.userRepo = userRepo;
         this.heartRepo = heartRepo;
     }
+    // userRepo: UserRepo;
+    // heartRepo: HeartRepo
+    // constructor(userRepo: UserRepo, heartRepo: HeartRepo) {
+    //     this.userRepo = userRepo;
+    //     this.heartRepo = heartRepo;
+    // }
     async heart() {
         const user = new User();
         user.name = "Bears";

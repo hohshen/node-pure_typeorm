@@ -1,7 +1,15 @@
 import { Group } from "../entity/Group";
 import { getRepository } from "typeorm";
-
-export class GroupRepo {
+import { injectable } from "inversify";
+export interface GroupRepoInterface {
+  setGroup(group: Group);
+  getGroup();
+  getGroupUser();
+  updGroup(id: number, name: string);
+  delGroup(id: number);
+}
+@injectable()
+export class GroupRepo implements GroupRepoInterface {
   groupRepo;
   constructor() {
     this.groupRepo = getRepository(Group);
@@ -18,8 +26,8 @@ export class GroupRepo {
     const result = this.groupRepo.find({ relations: ["member"] });
     return result;
   }
-  async updGroup(id:number,name:string){
-    const result =this.groupRepo.update(id,{ name: name } )
+  async updGroup(id: number, name: string) {
+    const result = this.groupRepo.update(id, { name: name })
     return result;
   }
   async delGroup(id: number) {
