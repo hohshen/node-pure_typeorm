@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToOne } from "typeorm";
-import { User } from "./User";
+import { User } from "./user.entity";
 
 @Entity()
 export class Heart {
@@ -10,7 +10,7 @@ export class Heart {
     @Column()
     name: string;
 
-    @OneToOne(type => User,user=>user.metadata)
+    @OneToOne(type => User, user => user.heart)
     @JoinColumn()//fk
     user: User;
 }

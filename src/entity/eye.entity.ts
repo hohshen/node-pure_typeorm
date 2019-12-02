@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
-import { User } from "./User";
+import { User } from "./user.entity";
 
 @Entity()
 export class Eye {
@@ -10,6 +10,6 @@ export class Eye {
     @Column()
     name: string;
 
-    @ManyToOne(type => User,user=>user.eye)
+    @ManyToOne(type => User, user => user.eye)
     user: User;//fk(one to many內含inner join)
 }

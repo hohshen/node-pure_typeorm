@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToMany } from "typeorm";
-import { Heart } from "./Heart";
-import { Eye } from "./Eye";
-import { Group } from "./Group";
+import { Heart } from "./heart.entity";
+import { Eye } from "./eye.entity";
+import { Group } from "./group.entity";
 
 @Entity()
 export class User {
@@ -15,8 +15,8 @@ export class User {
     @Column()
     email: string;
 
-    @OneToOne(type => Heart,heart=>heart.user)//(對過去,反回來)
-    metadata: Heart;
+    @OneToOne(type => Heart, heart => heart.user)//(對過去,反回來)
+    heart: Heart;
 
     @OneToMany(type => Eye, eye => eye.user)//(對過去,反回來)
     eye: Eye[];
