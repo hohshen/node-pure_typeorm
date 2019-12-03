@@ -20,10 +20,10 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "docker": "docker-compose up --build",
     "stop": "docker-compose down",
-    "mg:gn": "typeorm migration:generate -n ALL",
-    "mg:cr": "typeorm migration:create -n GroupMember",
-    "mg:up": "typeorm migration:run",
-    "mg:dw": "typeorm migration:revert"
+    "mg:gn": "ts-node ./node_modules/typeorm/cli.js migration:generate -n allSchema",
+    "mg:cr": "typeorm migration:create -n [EnterMigrateName]",
+    "mg:up": "ts-node ./node_modules/typeorm/cli.js migration:run",
+    "mg:dw": "ts-node ./node_modules/typeorm/cli.js migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^6.8.0",
@@ -49,7 +49,7 @@
     "supertest": "^4.0.2",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.2.0",
-    "ts-node": "^8.4.1",
+    "ts-node": "^8.5.4",
     "tsconfig-paths": "^3.9.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.3"

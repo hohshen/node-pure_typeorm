@@ -5,11 +5,10 @@ module.exports = {
   username: 'dev',
   password: 'dev',
   database: 'db',
-  entities: ['dist/**/*.entity{.ts,.js}'],
-  migrations: ['dist/migration/**/*.js'],
+  entities: ['src/**/*.entity{.ts,.js}'],
+  migrations: ['migration/**/*.ts'],
   cli: {
     entitiesDir: 'src/entity',
     migrationsDir: 'migration',
-    subscribersDir: 'src/subscriber',
   },
 };
