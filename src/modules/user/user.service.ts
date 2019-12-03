@@ -1,49 +1,58 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { User } from '../../entity/user.entity';
-
+import { UserRepository } from './user.repository';
+export interface UserServiceInterface {
+    getHello();
+    root()
+    setUser();
+    getUser();
+    updUser();
+    delUser();
+}
+export const USER_SERVICE = Symbol('USER_SERVICE');
 @Injectable()
-export class UserService {
+export class UserService implements UserServiceInterface {
     constructor(
-        @InjectRepository(User)
-        private readonly userRepository: Repository<User>,
+        @InjectRepository(UserRepository)
+        private readonly userRepository: UserRepository,
     ) { }
     getHello(): string {
         return 'Hello World!';
     }
-    async setUser(user: User) {
-        const result = await this.userRepository.save(user);
-        console.log(result);
-        return result;
+    async root() {
+        try {
+            console.log("user root service")
+            const user1 = new User();
+            user1.name = "Bears1";
+            user1.email = "fdsa@dsaf1";
+            const user = new User();
+            user.name = "Bears";
+            user.email = "fdsa@dsaf";
+            const c1 = await this.userRepository.setUser(user1);
+            const c2 = await this.userRepository.setUser(user);
+            const u = await this.userRepository.updUser(c2.id, "abc");
+            const r = await this.userRepository.getUser();
+            const d = await this.userRepository.delUser(c1.id);
+            //const all = await this.userService.findAll();
+            return { c1, c2, u, r, d, /*all */ };
+        } catch (e) {
+            throw e;
+        }
     }
-    async getUser() {
-        const result = await this.userRepository.find();
-        return result;
+    setUser() {
+        const user = new User();
+        user.name = "Bears";
+        user.email = "fdsa@dsaf";
+        return this.userRepository.setUser(user);
     }
-    async updUser(id: number, name: string) {
-        const result = await this.userRepository.update(id, { name: name })
-        return result;
+    getUser() {
+        return this.userRepository.getUser();
     }
-    async delUser(id: number) {
-        const result = await this.userRepository.delete({ id: id });
-        return result;
+    updUser() {
+        return this.userRepository.updUser(2, "abc");
     }
-    /* revert */
-    async findHeart() {
-        const result = await this.userRepository.find({ relations: ["heart"] });
-        return result;
-    }
-    async findEye() {
-        const result = await this.userRepository.find({ relations: ["eye"] });
-        return result;
-    }
-    async findGroup() {
-        const result = await this.userRepository.find({ relations: ["group"] });
-        return result;
-    }
-    async findAll() {
-        const result = await this.userRepository.find({ relations: ["heart", "eye", "group"] });
-        return result;
+    delUser() {
+        return this.userRepository.delUser(1);
     }
 }

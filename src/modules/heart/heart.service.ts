@@ -1,34 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Heart } from '../../entity/heart.entity';
+import { UserRepository } from '../user/user.repository';
+import { HeartRepository } from './heart.repository';
+import { User } from '../../entity/user.entity';
+
 @Injectable()
 export class HeartService {
     constructor(
-        @InjectRepository(Heart)
-        private readonly heartRepository: Repository<Heart>,
+        @InjectRepository(HeartRepository)
+        private readonly heartRepository: HeartRepository,
+        @InjectRepository(UserRepository)
+        private readonly userRepository: UserRepository,
     ) { }
+
     getHello(): string {
         return 'Hello World!';
     }
-    async setHeart(heart: Heart) {
-        const result = this.heartRepository.save(heart);
-        return result;
-    }
-    async getHeart() {
-        const result = this.heartRepository.find();
-        return result;
-    }
-    async getHeartUser() {
-        const result = this.heartRepository.find({ relations: ["user"] });
-        return result;
-    }
-    async updHeart(id: number, name: string) {
-        const result = this.heartRepository.update(id, { name: name })
-        return result;
-    }
-    async delHeart(id: number) {
-        const result = await this.heartRepository.delete({ id: id });
-        return result;
+    async root() {
+        const user = new User();
+        user.name = "Bears";
+        user.email = "fdsa@dsaf";
+        const heart = new Heart();
+        heart.name = "Bear's heart";
+        heart.user = user;
+        try {
+            const c1 = await this.userRepository.setUser(user);
+            const c2 = await this.heartRepository.setHeart(heart);
+            const result = await this.heartRepository.getHeart();
+            const result2 = await this.heartRepository.getHeartUser();
+            const revert = await this.userRepository.findHeart();
+            return ({ c1, c2, result, result2, revert });
+        } catch (e) {
+            throw e;
+        }
     }
 }

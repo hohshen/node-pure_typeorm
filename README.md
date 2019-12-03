@@ -3,6 +3,26 @@ todo:
 - ts-watch recompile problem
 - repository
 
+## ormconfig
+ * first compiler
+``` json=
+  entities: ['dist/**/*.entity{.ts,.js}'],
+  migrations: ['dist/migration/**/*.js'],
+  cli: {
+    entitiesDir: 'src/entity',
+    migrationsDir: 'migration',
+  }, 
+  //ref:https://github.com/typeorm/typeorm/blob/master/docs/migrations.md
+  //typeorm migration:create and typeorm migration:generate will create .ts files.
+  //migration:run and migration:revert commands only work on .js files. 
+  //sol run up :ts-node ./node_modules/typeorm/cli.js migration:run
+```
+```
+sol:https://github.com/nestjs/nest/issues/2135
+```
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>

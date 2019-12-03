@@ -1,10 +1,11 @@
-import { Controller, Get } from '@nestjs/common';
-import { UserService } from './user.service';
-import { User } from '../../entity/user.entity';
+import { Controller, Get, Inject } from '@nestjs/common';
+import { UserServiceInterface, USER_SERVICE } from './user.service';
+
 
 @Controller('/user')
 export class UserController {
-    constructor(private readonly userService: UserService) { }
+    
+    constructor(@Inject(USER_SERVICE)private readonly userService: UserServiceInterface) { }
 
     @Get()
     getHello(): string {
@@ -12,30 +13,12 @@ export class UserController {
     }
     @Get('/root')
     async root() {
-        try {
-            const user1 = new User();
-            user1.name = "Bears1";
-            user1.email = "fdsa@dsaf1";
-            const user = new User();
-            user.name = "Bears";
-            user.email = "fdsa@dsaf";
-            const c1 = await this.userService.setUser(user1);
-            const c2 = await this.userService.setUser(user);
-            const u = await this.userService.updUser(c2.id, "abc");
-            const r = await this.userService.getUser();
-            const d = await this.userService.delUser(c1.id);
-            //const all = await this.userService.findAll();
-            return { c1, c2, u, r, d, /*all */ };
-        } catch (e) {
-            throw e;
-        }
+        return this.userService.root();
     }
+
     @Get('/set')
     setUser() {
-        const user = new User();
-        user.name = "Bears";
-        user.email = "fdsa@dsaf";
-        return this.userService.setUser(user);
+        return this.userService.setUser();
     }
     @Get('/get')
     getUser() {
@@ -43,10 +26,10 @@ export class UserController {
     }
     @Get('/upd')
     updUser() {
-        return this.userService.updUser(2, "abc");
+        return this.userService.updUser();
     }
     @Get('/del')
     delUser() {
-        return this.userService.delUser(1);
+        return this.userService.delUser();
     }
 }
