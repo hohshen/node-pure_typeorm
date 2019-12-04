@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Group } from '../../entity/group.entity';
-import {  UserRepository } from '../user/user.repository';
-import { GroupRepository } from './group.repository';
+import {  UserRepository } from '../../repositories/user.repository';
+import { GroupRepository } from '../../repositories/group.repository';
 import { User } from '../../entity/user.entity';
 import { TYPES } from 'src/types';
 export interface GroupService {

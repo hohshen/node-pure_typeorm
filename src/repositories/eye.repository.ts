@@ -1,4 +1,4 @@
-import { Eye } from '../../entity/eye.entity';
+import { Eye } from '../entity/eye.entity';
 import { Repository, EntityRepository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 export interface EyeRepository{

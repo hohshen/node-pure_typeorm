@@ -3,16 +3,21 @@ import { UserService } from './user.service';
 import { TYPES } from '../../types';
 
 
+
 @Controller('/user')
 export class UserController {
 
     constructor(
         @Inject(TYPES.UserService)
-        private readonly userService: UserService
+        private readonly userService: UserService,
+        // @Inject(TYPES.Repo)
+        // private readonly rService: UserRepository2
     ) { }
 
     @Get()
     getHello(): string {
+        // const a=this.rService.getUser();
+        // console.log(a)
         return this.userService.getHello();
     }
     @Get('/root')

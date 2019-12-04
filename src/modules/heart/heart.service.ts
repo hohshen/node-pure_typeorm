@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Heart } from '../../entity/heart.entity';
-import { UserRepository } from '../user/user.repository';
-import { HeartRepository } from './heart.repository';
+import { UserRepository } from '../../repositories/user.repository';
+import { HeartRepository } from '../../repositories/heart.repository';
 import { User } from '../../entity/user.entity';
 import { TYPES } from 'src/types';
 export interface HeartService {

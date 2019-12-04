@@ -1,4 +1,4 @@
-import { Group } from '../../entity/group.entity';
+import { Group } from '../entity/group.entity';
 import { Repository, EntityRepository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 export interface GroupRepository{

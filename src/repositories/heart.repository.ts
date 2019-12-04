@@ -1,4 +1,4 @@
-import { Heart } from '../../entity/heart.entity';
+import { Heart } from '../entity/heart.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';

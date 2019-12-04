@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Eye } from '../../entity/eye.entity';
 import { User } from '../../entity/user.entity';
-import { EyeRepository } from './eye.repository';
-import { UserRepository } from '../user/user.repository';
+import { EyeRepository } from '../../repositories/eye.repository';
+import { UserRepository } from '../../repositories/user.repository';
 import { TYPES } from 'src/types';
 export interface EyeService {
     getHello();

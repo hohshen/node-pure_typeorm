@@ -10,4 +10,6 @@ export const TYPES = {
 
   GroupService: Symbol('GROUP_SERVICE_INTERFACE'),
   GroupRepository:  Symbol('GROUP_REPOSITORY_INTERFACE'),
+
+  Repo:Symbol('Repo')
 }
