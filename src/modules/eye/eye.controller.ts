@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { EyeService } from './eye.service';
-import { UserService } from '../user/user.service';
+import { UserServiceImpl } from '../user/user.service';
 @Controller('/eye')
 export class EyeController {
     constructor(

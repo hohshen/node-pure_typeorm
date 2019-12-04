@@ -3,14 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Eye } from '../../entity/eye.entity';
 import { User } from '../../entity/user.entity';
 import { EyeRepository } from './eye.repository';
-import { UserRepository } from '../user/user.repository';
+import { UserRepositoryImpl } from '../user/user.repository';
 @Injectable()
 export class EyeService {
     constructor(
         @InjectRepository(EyeRepository)
         private readonly eyeRepository: EyeRepository,
-        @InjectRepository(UserRepository)
-        private readonly userRepository: UserRepository,
+        @InjectRepository(UserRepositoryImpl)
+        private readonly userRepository: UserRepositoryImpl,
     ) { }
     getHello(): string {
         return 'Hello World!';

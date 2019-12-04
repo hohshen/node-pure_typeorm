@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Group } from '../../entity/group.entity';
-import { UserRepository } from '../user/user.repository';
+import { UserRepositoryImpl } from '../user/user.repository';
 import { GroupRepository } from './group.repository';
 import { User } from '../../entity/user.entity';
 @Injectable()
@@ -9,8 +9,8 @@ export class GroupService {
     constructor(
         @InjectRepository(GroupRepository)
         private readonly groupRepository: GroupRepository,
-        @InjectRepository(UserRepository)
-        private readonly userRepository: UserRepository,
+        @InjectRepository(UserRepositoryImpl)
+        private readonly userRepository: UserRepositoryImpl,
     ) { }
     getHello(): string {
         return 'Hello World!';

@@ -2,18 +2,24 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../../entity/user.entity'
 import { UserController } from './user.controller';
-import { UserService, USER_SERVICE } from './user.service';
-import { UserRepository } from './user.repository';
+import { UserServiceImpl } from './user.service';
+import { TYPES } from '../../types';
+import { UserRepositoryImpl } from './user.repository';
 const modules = [
-    {
-      provide: USER_SERVICE,
-      useClass: UserService,
-    }
-  ];
+  {
+    provide:TYPES.UserServiceInterface,
+    useClass: UserServiceImpl,
+  },
+  {
+    provide:TYPES.UserRepositoryInterface,
+    useClass: UserRepositoryImpl,
+  }
+];
 @Module({
-    imports: [TypeOrmModule.forFeature([User,UserRepository])],
-    controllers: [UserController],
-    providers: modules,
+  imports: [TypeOrmModule.forFeature([User]) ],
+  controllers: [UserController],
+  providers: modules,
+  //exports: modules
 })
 export class UserModule {
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Heart } from '../../entity/heart.entity';
-import { UserRepository } from '../user/user.repository';
+import { UserRepositoryImpl } from '../user/user.repository';
 import { HeartRepository } from './heart.repository';
 import { User } from '../../entity/user.entity';
 
@@ -10,8 +10,8 @@ export class HeartService {
     constructor(
         @InjectRepository(HeartRepository)
         private readonly heartRepository: HeartRepository,
-        @InjectRepository(UserRepository)
-        private readonly userRepository: UserRepository,
+        @InjectRepository(UserRepositoryImpl)
+        private readonly userRepository: UserRepositoryImpl,
     ) { }
 
     getHello(): string {
