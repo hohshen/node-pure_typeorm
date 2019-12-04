@@ -6,13 +6,15 @@ import { UserModule } from './modules/user/user.module';
 import { HeartModule } from './modules/heart/heart.module';
 import { EyeModule } from './modules/eye/eye.module';
 import { GroupModule } from './modules/group/group.module';
+import { RepoModule } from './repositories/index.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     UserModule,
     HeartModule,
     EyeModule,
-    GroupModule
+    GroupModule,
+    RepoModule
   ],
   // controllers: [AppController],
   // providers: [AppService],

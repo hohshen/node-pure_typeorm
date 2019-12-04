@@ -1,12 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
 import { EyeService } from './eye.service';
-import { UserServiceImpl } from '../user/user.service';
+import { TYPES } from 'src/types';
 @Controller('/eye')
 export class EyeController {
     constructor(
-        private readonly eyeService: EyeService,
-    ) { }
-
+        @Inject(TYPES.EyeService)
+        private readonly eyeService: EyeService
+      ) { }
     @Get()
     getHello(): string {
         return this.eyeService.getHello();

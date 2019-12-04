@@ -2,15 +2,31 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Eye } from '../../entity/eye.entity'
 import { EyeController } from './eye.controller';
-import { EyeService } from './eye.service';
-import { UserServiceImpl } from '../user/user.service';
+import { EyeServiceImpl } from './eye.service';
+
 import { User } from '../../entity/user.entity';
 import { UserRepositoryImpl } from '../user/user.repository';
-import { EyeRepository } from './eye.repository';
+import { EyeRepositoryImpl } from './eye.repository';
+import { TYPES } from 'src/types';
+import { UserModule } from '../user/user.module';
+const modules = [
+    {
+        provide: TYPES.UserRepository,
+        useClass: UserRepositoryImpl,
+    },
+    {
+        provide: TYPES.EyeRepository,
+        useClass: EyeRepositoryImpl,
+    },
+    {
+        provide: TYPES.EyeService,
+        useClass: EyeServiceImpl,
+    }
+];
 @Module({
-    // imports: [TypeOrmModule.forFeature([Eye,EyeRepository, User,UserRepositoryImpl])],
-    // controllers: [EyeController],
-    // providers: [EyeService, UserServiceImpl],
+    imports: [TypeOrmModule.forFeature([Eye, User]),UserModule],
+    controllers: [EyeController],
+    providers: modules,
 })
 export class EyeModule {
 }

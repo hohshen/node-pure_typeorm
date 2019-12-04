@@ -1,19 +1,21 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable, Inject } from '@nestjs/common';
 import { Heart } from '../../entity/heart.entity';
-import { UserRepositoryImpl } from '../user/user.repository';
+import { UserRepository } from '../user/user.repository';
 import { HeartRepository } from './heart.repository';
 import { User } from '../../entity/user.entity';
-
+import { TYPES } from 'src/types';
+export interface HeartService {
+    getHello();
+    root()
+}
 @Injectable()
-export class HeartService {
+export class HeartServiceImpl implements HeartService {
     constructor(
-        @InjectRepository(HeartRepository)
+        @Inject(TYPES.HeartRepository)
         private readonly heartRepository: HeartRepository,
-        @InjectRepository(UserRepositoryImpl)
-        private readonly userRepository: UserRepositoryImpl,
+        @Inject(TYPES.UserRepository)
+        private readonly userRepository:UserRepository,
     ) { }
-
     getHello(): string {
         return 'Hello World!';
     }

@@ -2,15 +2,30 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Heart } from '../../entity/heart.entity'
 import { HeartController } from './heart.controller';
-import { HeartService } from './heart.service';
+import { HeartServiceImpl } from './heart.service';
 import { User } from '../../entity/user.entity';
-import { UserServiceImpl } from '../user/user.service';
-import { HeartRepository } from './heart.repository';
+import {  HeartRepositoryImpl } from './heart.repository';
 import { UserRepositoryImpl } from '../user/user.repository';
+import { TYPES } from 'src/types';
+import { UserModule } from '../user/user.module';
+const modules = [
+    {
+        provide: TYPES.UserRepository,
+        useClass: UserRepositoryImpl,
+    },
+    {
+        provide: TYPES.HeartRepository,
+        useClass: HeartRepositoryImpl,
+    },
+    {
+        provide: TYPES.HeartService,
+        useClass: HeartServiceImpl,
+    }
+];
 @Module({
-    // imports: [TypeOrmModule.forFeature([Heart,HeartRepository, User,UserRepositoryImpl])],
-    // controllers: [HeartController],
-    // providers: [HeartService, UserServiceImpl],
+    imports: [TypeOrmModule.forFeature([Heart, User]),UserModule],
+    controllers: [HeartController],
+    providers: modules,
 })
 export class HeartModule {
 }

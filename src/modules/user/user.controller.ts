@@ -1,5 +1,5 @@
 import { Controller, Get, Inject } from '@nestjs/common';
-import { UserServiceInterface, UserServiceImpl } from './user.service';
+import { UserService } from './user.service';
 import { TYPES } from '../../types';
 
 
@@ -7,8 +7,8 @@ import { TYPES } from '../../types';
 export class UserController {
 
     constructor(
-        @Inject(TYPES.UserServiceInterface)
-        private readonly userService: UserServiceImpl
+        @Inject(TYPES.UserService)
+        private readonly userService: UserService
     ) { }
 
     @Get()

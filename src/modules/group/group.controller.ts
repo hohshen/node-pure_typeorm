@@ -1,11 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
 import { GroupService } from './group.service';
+import { TYPES } from 'src/types';
 @Controller('/group')
 export class GroupController {
     constructor(
-        private readonly groupService: GroupService,
-    ) { }
-
+        @Inject(TYPES.GroupService)
+        private readonly groupService: GroupService
+      ) { }
     @Get()
     getHello(): string {
         return this.groupService.getHello();

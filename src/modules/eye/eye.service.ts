@@ -1,16 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable, Inject } from '@nestjs/common';
 import { Eye } from '../../entity/eye.entity';
 import { User } from '../../entity/user.entity';
 import { EyeRepository } from './eye.repository';
-import { UserRepositoryImpl } from '../user/user.repository';
+import { UserRepository } from '../user/user.repository';
+import { TYPES } from 'src/types';
+export interface EyeService {
+    getHello();
+    root()
+}
 @Injectable()
-export class EyeService {
+export class EyeServiceImpl implements EyeService{
     constructor(
-        @InjectRepository(EyeRepository)
+        @Inject(TYPES.EyeRepository)
         private readonly eyeRepository: EyeRepository,
-        @InjectRepository(UserRepositoryImpl)
-        private readonly userRepository: UserRepositoryImpl,
+        @Inject(TYPES.UserRepository)
+        private readonly userRepository:UserRepository,
     ) { }
     getHello(): string {
         return 'Hello World!';

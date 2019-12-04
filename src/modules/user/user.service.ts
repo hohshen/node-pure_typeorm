@@ -1,9 +1,8 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { User } from '../../entity/user.entity';
-import {   UserRepositoryInterface , UserRepositoryImpl} from './user.repository';
-import { InjectRepository } from '@nestjs/typeorm';
+import { UserRepository } from './user.repository';
 import { TYPES } from '../../types';
-export interface UserServiceInterface {
+export interface UserService {
     getHello();
     root()
     setUser();
@@ -12,10 +11,10 @@ export interface UserServiceInterface {
     delUser();
 }
 @Injectable()
-export class UserServiceImpl implements UserServiceInterface {
+export class UserServiceImpl implements UserService {
     constructor(
-        @Inject(TYPES.UserRepositoryInterface)
-        private readonly userRepository: UserRepositoryInterface,
+        @Inject(TYPES.UserRepository)
+        private readonly userRepository: UserRepository,
     ) { }
     getHello(): string {
         return 'Hello World!';

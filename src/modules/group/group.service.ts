@@ -1,16 +1,21 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable, Inject } from '@nestjs/common';
 import { Group } from '../../entity/group.entity';
-import { UserRepositoryImpl } from '../user/user.repository';
+import {  UserRepository } from '../user/user.repository';
 import { GroupRepository } from './group.repository';
 import { User } from '../../entity/user.entity';
+import { TYPES } from 'src/types';
+export interface GroupService {
+    getHello();
+    root()
+}
 @Injectable()
-export class GroupService {
+export class GroupServiceImpl implements GroupService{
+
     constructor(
-        @InjectRepository(GroupRepository)
+        @Inject(TYPES.GroupRepository)
         private readonly groupRepository: GroupRepository,
-        @InjectRepository(UserRepositoryImpl)
-        private readonly userRepository: UserRepositoryImpl,
+        @Inject(TYPES.UserRepository)
+        private readonly userRepository:UserRepository,
     ) { }
     getHello(): string {
         return 'Hello World!';

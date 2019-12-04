@@ -1,11 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
 import { HeartService } from './heart.service';
+import { TYPES } from 'src/types';
 @Controller('/heart')
 export class HeartController {
   constructor(
-    private readonly heartService: HeartService,
+    @Inject(TYPES.HeartService)
+    private readonly heartService: HeartService
   ) { }
-
   @Get()
   getHello(): string {
     return this.heartService.getHello();

@@ -7,16 +7,16 @@ import { TYPES } from '../../types';
 import { UserRepositoryImpl } from './user.repository';
 const modules = [
   {
-    provide:TYPES.UserServiceInterface,
+    provide:TYPES.UserService,
     useClass: UserServiceImpl,
   },
   {
-    provide:TYPES.UserRepositoryInterface,
+    provide:TYPES.UserRepository,
     useClass: UserRepositoryImpl,
   }
 ];
 @Module({
-  imports: [TypeOrmModule.forFeature([User]) ],
+  imports: [TypeOrmModule.forFeature([User])],
   controllers: [UserController],
   providers: modules,
   //exports: modules
