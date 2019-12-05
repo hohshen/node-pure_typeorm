@@ -1,4 +1,4 @@
-import { Module, Global, Injectable } from '@nestjs/common';
+import { Module, Global } from '@nestjs/common';
 import { TYPES } from '../types';
 import { UserRepositoryImpl } from './user.repository';
 import { HeartRepositoryImpl } from './heart.repository';

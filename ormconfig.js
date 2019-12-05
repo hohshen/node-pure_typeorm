@@ -1,5 +1,5 @@
 module.exports = {
-  type: 'mysql',
+  type: 'postgres',
   host: 'localhost',
   port: 30678,
   username: 'dev',
