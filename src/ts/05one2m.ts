@@ -1,11 +1,11 @@
-import { conn } from "./01connect";
+import { getClient } from "./01connect";
 import { User } from './entity/User';
 import { Eye } from './entity/Eye';
 const main = async () => {
+  const connect=await getClient()
 
-  const con = await conn();
-  const UserRep = con.getRepository(User);
-  const EyeRep = con.getRepository(Eye);
+  const UserRep =connect.getRepository(User);
+  const EyeRep = connect.getRepository(Eye);
 
   /*CreateUser*/
   const user = new User();

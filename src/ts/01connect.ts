@@ -1,4 +1,4 @@
-import { createConnection, ConnectionOptions } from "typeorm";
+import { createConnection, ConnectionOptions, Connection } from "typeorm";
 import { User } from "./entity/User";
 import { Heart } from "./entity/Heart";
 import { Eye } from "./entity/Eye";
@@ -11,17 +11,21 @@ const options: ConnectionOptions = {
   username: "dev",
   password: "dev",
   database: "db",
-  entities: [User,Heart,Eye,Group],
+  entities: [User, Heart, Eye, Group],
   synchronize: true,
 };
-
+var connection: Connection;
 export const conn = async () => {
   try {
-    const connection = await createConnection(options);
+    connection = await createConnection(options);
     console.log("successful connect");
     return connection;
   } catch (error) {
     console.log(error)
   }
 }
-conn();
+
+export async function getClient() {
+  await conn();
+  return connection;
+}

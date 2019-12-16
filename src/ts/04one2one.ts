@@ -1,11 +1,11 @@
-import { conn } from "./01connect";
+import { getClient } from "./01connect";
 import { User } from './entity/User';
 import { Heart } from './entity/Heart';
 const main = async () => {
+  const connect=await getClient()
 
-  const con = await conn();
-  const UserRep = con.getRepository(User);
-  const HeartRep = con.getRepository(Heart);
+  const UserRep =connect.getRepository(User);
+  const HeartRep = connect.getRepository(Heart);
 
   /*CreateUser*/
   const user = new User();
