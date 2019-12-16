@@ -17,9 +17,9 @@ app.listen(5278, async () => {
 });
 
 /**
- * 如果不自製連線的話（不使用ormcofnig連線）
+ * 如果不自製連線的話（使用ormcofnig連線）
  * 就要使用import { createConnection } from "typeorm"; 灌入整個express
  * 內部的entity也要import { getRepository } from "typeorm";
  * 
- * 如果自製的話就可以直接使用該連線
+ * 如果自製的話就可以直接使用該連線(重製config)
  */
