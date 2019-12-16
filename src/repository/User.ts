@@ -1,10 +1,10 @@
 import { User } from "../entity/User";
-import { getRepository } from "typeorm";
+import { getClient } from "../dbs/db";
 
 export class UserRepo {
   userRepo;
   constructor() {
-    this.userRepo = getRepository(User);
+    this.userRepo = getClient().getRepository(User);
   }
   async setUser(user: User) {
     const result = this.userRepo.save(user);

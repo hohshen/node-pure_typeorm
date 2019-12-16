@@ -1,10 +1,10 @@
 import { Group } from "../entity/Group";
-import { getRepository } from "typeorm";
+import { getClient } from "../dbs/db";
 
 export class GroupRepo {
   groupRepo;
   constructor() {
-    this.groupRepo = getRepository(Group);
+    this.groupRepo = getClient().getRepository(Group);
   }
   async setGroup(group: Group) {
     const result = this.groupRepo.save(group);

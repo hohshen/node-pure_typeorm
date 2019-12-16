@@ -1,10 +1,10 @@
 import { Eye } from "../entity/Eye";
-import { getRepository } from "typeorm";
+import { getClient } from "../dbs/db";
 
 export class EyeRepo {
   eyeRepo;
   constructor() {
-    this.eyeRepo = getRepository(Eye);
+    this.eyeRepo = getClient().getRepository(Eye);
   }
   async setEye(eye: Eye) {
     const result = this.eyeRepo.save(eye);

@@ -1,10 +1,10 @@
 import { Heart } from "../entity/Heart";
-import { getRepository } from "typeorm";
+import { getClient } from "../dbs/db";
 
 export class HeartRepo {
   heartRepo;
   constructor() {
-    this.heartRepo = getRepository(Heart);
+    this.heartRepo = getClient().getRepository(Heart);
   }
   async setHeart(heart: Heart) {
     const result = this.heartRepo.save(heart);
