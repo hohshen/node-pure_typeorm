@@ -1,7 +1,7 @@
 import { UserRepoInterface } from "../repository/User";
 import { User } from "../entity/User";
 import { injectable, inject } from "inversify";
-import { TYPES } from "../Types";
+import { TYPES } from "../types";
 export interface UserServiceInterface {
     user()
 }

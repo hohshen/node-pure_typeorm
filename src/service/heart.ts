@@ -3,7 +3,7 @@ import { HeartRepoInterface } from "../repository/Heart";
 import { User } from "../entity/User";
 import { Heart } from "../entity/Heart";
 import { injectable, inject } from "inversify";
-import { TYPES } from "../Types";
+import { TYPES } from "../types";
 export interface HeartServiceInterface {
     heart()
 }

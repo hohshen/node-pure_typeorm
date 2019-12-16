@@ -2,7 +2,7 @@ import { UserRepoInterface } from "../repository/User";
 import { EyeRepoInterface } from "../repository/Eye";
 import { User } from "../entity/User";
 import { Eye } from "../entity/Eye";
-import { TYPES } from "../Types";
+import { TYPES } from "../types";
 import { injectable, inject } from "inversify";
 export interface EyeServiceInterface {
     eye()
