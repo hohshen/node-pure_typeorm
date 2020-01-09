@@ -3,6 +3,7 @@ import { User } from "../entity/User";
 import { Heart } from "../entity/Heart";
 import { Eye } from "../entity/Eye";
 import { Group } from "../entity/Group";
+import { Folder } from "../entity/Folder";
 var connection: Connection;
 const options: ConnectionOptions = {
   type: "mysql",
@@ -11,7 +12,7 @@ const options: ConnectionOptions = {
   username: "dev",
   password: "dev",
   database: "db",
-  entities: [User, Heart, Eye, Group],
+  entities: [User, Heart, Eye, Group, Folder],
   synchronize: true,
 };
 export async function connect() {

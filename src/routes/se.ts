@@ -7,6 +7,9 @@ import { EyeRepo } from "../repository/Eye";
 import { Eye } from "../entity/Eye";
 import { GroupRepo } from "../repository/Group";
 import { Group } from "../entity/Group";
+import { getClient } from "../dbs/db";
+import { Folder } from "../entity/Folder";
+
 const router = Router();
 router.get("/user", async (req, res, next) => {
   try {
@@ -101,5 +104,17 @@ router.get("/group", async (req, res, next) => {
     res.json(e);
   }
 });
-
+router.get("/folder", async (req, res, next) => {
+  const folderRepo = getClient().getRepository(Folder);
+  const r1 =await folderRepo.find({ relations: ["parent"] });
+  const r2 =await folderRepo.find({ relations: ["child"] });
+  res.json({r1,r2})
+});
+router.get("/crf", async (req, res, next) => {
+  const folderRepo = getClient().getRepository(Folder);
+  const f1 = new Folder();f1.name='grandfather',f1.parent=null; const r1 =await folderRepo.save(f1);
+  const f2 = new Folder();f2.name='father',f2.parent=f1; const r2 =await folderRepo.save(f2);
+  const f3 = new Folder();f3.name='son',f3.parent=f2;  const r3 =await folderRepo.save(f3);
+   res.json({r1,r2,r3})
+});
 export default router;

@@ -11,8 +11,8 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_USER=dev
       - MYSQL_PASSWORD=dev
-    volumes:
-      - db-data:/etc/mysql/config
+    # volumes:
+    #   - db-data:/etc/mysql/config
     ports:
       - "30678:3306"
     expose:
@@ -57,9 +57,9 @@ services:
   #     - 5278
   #   networks:
   #     - server_network
-volumes:
-  db-data:
-    driver: local
+# volumes:
+#   db-data:
+#     driver: local
 # networks:
 #   server_network:
 #     external:

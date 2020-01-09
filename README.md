@@ -37,3 +37,58 @@ Steps to run this project:
 
 ### How to let express connect typeorm
 - It will connect by ormconfig.js,and use createConnection() function and then execut express.
+
+# Tree
+ref: https://github.com/typeorm/typeorm/blob/master/docs/tree-entities.md
+### relation
+```javascript
+@Entity()
+export class Folder {
+    @PrimaryGeneratedColumn()id: number;
+    @Column()name: string;
+    @ManyToOne(type => Folder,parent=>parent.child)parent: Folder;
+    @OneToMany(type => Folder, child => child.parent)child: Folder[];
+}
+```
+### table
+```shell
+id(pk)
+name
+parentId(fk)
+```
+### result
+```json
+//create
+// f1.name='grandfather',f1.parent=null; const r1 =await folderRepo.save(f1);
+// f2.name='father',f2.parent=f1; const r2 =await folderRepo.save(f2);
+// f3.name='son',f3.parent=f2;  const r3 =await folderRepo.save(f3);
+{
+    "r1": {"id": 7,"name": "grandfather","parent": null  },
+    "r2": {"id": 8,"name": "father","parent": 
+      {"id": 7,"name": "grandfather","parent": null}
+    },   
+    "r3": {"id": 9,"name": "son","parent": 
+      {"id": 8,"name": "father","parent": 
+        {"id": 7,"name": "grandfather","parent":nul}
+      }
+    }
+}
+```
+
+```json
+// find
+//  const r1 =await folderRepo.find({ relations: ["parent"] });
+//  const r2 =await folderRepo.find({ relations: ["child"] });
+{
+  "r1": [
+    {"id": 3,"name": "son","parent":{"id": 2,"name": "father"}},
+    {"id": 2,"name": "father","parent":{"id": 1,"name": "grandfather"}},
+    {"id": 1,"name": "grandfather","parent": null}    
+  ],
+  "r2": [
+    {"id": 1,"name": "grandfather","child": [{"id": 2,"name": "father"}]},
+    {"id": 2,"name": "father","child": [{"id": 3,"name": "son"}]},
+    {"id": 3,"name": "son","child": []}
+  ]
+}
+```

@@ -21,7 +21,7 @@
       "docker": "docker-compose up --build",
       "stop": "docker-compose down",
       "mg:gn": "typeorm migration:generate -n ALL",
-      "mg:cr": "typeorm migration:create -n GroupMembdsafdsafer",
+      "mg:cr": "typeorm migration:create -n Tree",
       "mg:up": "typeorm migration:run",
       "mg:dw": "typeorm migration:revert"
    }
