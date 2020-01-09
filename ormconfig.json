@@ -7,14 +7,14 @@
    "database": "db",
    "logging": false,
    "entities": [
-      "dist/ts/entity/**/*.js"
+      "dist/entity/**/*.js"
    ],
    "migrations": [
-      "dist/ts/migration/**/*.js"
+      "dist/migration/**/*.js"
    ],
    "cli": {
-      "entitiesDir": "src/ts/entity",
-      "migrationsDir": "src/ts/migration",
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
       "subscribersDir": "src/subscriber"
    }
 }

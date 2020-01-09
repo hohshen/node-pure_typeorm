@@ -4,7 +4,7 @@ Steps to run this project:
 
 1. Run `npm i` command
 2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+3. Run `npm run start` command
 
 
 # Migration
@@ -26,3 +26,7 @@ Steps to run this project:
 * Migration only focus on origin database design (foreign and index...)
 * .sequelizerc will bind migration , model and seeder.
 * because relaction at each model. sequelize need to import (first second ... is important)every model and sequelize.sync() again so if you want don't open sync need to bind migration , model and seeder together.
+
+### how to run migration
+1. `npm run build`
+2. `npm run mg:up`
