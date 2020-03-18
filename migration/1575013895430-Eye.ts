@@ -14,6 +14,12 @@ export class Eye1575013895430 implements MigrationInterface {
                     generationStrategy: 'increment',
                 },
                 {
+                    name: "sn",
+                    type: 'varchar',
+                    isUnique: true,
+                    default: null,
+                },
+                {
                     name: 'name',
                     type: 'varchar',
                 },

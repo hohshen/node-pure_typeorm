@@ -30,9 +30,11 @@ export default class EyeService {
 
         /*CreateEye*/
         const leftEye = new Eye();
+       // leftEye.sn='abc';
         leftEye.name = "EyeMan's leftEye";
         leftEye.user = user;
         const rightEye = new Eye();
+        rightEye.sn = 'fdsgfda';
         rightEye.name = "EyeMan's rightEye";
         rightEye.user = user;
         try {
