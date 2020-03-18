@@ -22,6 +22,7 @@
       "04": "ts-node src/04one2one",
       "05": "ts-node src/05one2m",
       "06": "ts-node src/06m2n",
+      "07": "ts-node src/07nest",
       "dev": "ts-node src/index.ts",
       "docker": "docker-compose up --build",
       "stop": "docker-compose down"
