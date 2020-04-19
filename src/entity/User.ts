@@ -15,7 +15,7 @@ export class User {
     @Column()
     email: string;
 
-    @OneToOne(type => Heart,heart=>heart.user)//(對過去,反回來)
+    @OneToOne(type => Heart, heart => heart.user)//(對過去,反回來)
     metadata: Heart;
 
     @OneToMany(type => Eye, eye => eye.user)//(對過去,反回來)

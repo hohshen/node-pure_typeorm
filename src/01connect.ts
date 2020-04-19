@@ -11,7 +11,8 @@ const options: ConnectionOptions = {
   username: "dev",
   password: "dev",
   database: "db",
-  entities: [User,Heart,Eye,Group],
+  entities: [User, Heart, Eye, Group],
+  cache: true,//要使用catch記得開啟
   synchronize: true,
 };
 
@@ -24,4 +25,4 @@ export const conn = async () => {
     console.log(error)
   }
 }
-conn();
+// conn();

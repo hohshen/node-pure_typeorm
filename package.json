@@ -8,6 +8,7 @@
       "typescript": "3.3.3333"
    },
    "dependencies": {
+      "express": "^4.17.1",
       "mysql": "^2.14.1",
       "reflect-metadata": "^0.1.10",
       "tsc-watch": "^4.0.0",
@@ -23,6 +24,8 @@
       "05": "ts-node src/05one2m",
       "06": "ts-node src/06m2n",
       "07": "ts-node src/07nest",
+      "08": "ts-node src/08transaction",
+      "09": "ts-node src/09cache",
       "dev": "ts-node src/index.ts",
       "docker": "docker-compose up --build",
       "stop": "docker-compose down"

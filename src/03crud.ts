@@ -16,14 +16,14 @@ const main = async () => {
     const result = await UserRep.find();
     console.log("ReadUser", result);
   }
- 
+
   { /*CountUser*/
     const result = await UserRep.findAndCount();
     console.log("CountUser", result);
   }
 
   {/*UpdateUser*/
-    const result = await UserRep.update({ name: "Mmenps" }, { id: 1 });
+    const result = await UserRep.update({ name: "Mmenps" }, { id: 1 });//query, value
     console.log("UpdateUser", result);
   }
 
