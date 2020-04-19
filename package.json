@@ -16,7 +16,7 @@
    "scripts": {
       "build": "rimraf dist && tsc -p tsconfig.build.json",
       "start": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/index.js\"",
-      "dev": "ts-node src/index.ts",
+      "dev": "ts-node src/01connect.ts",
       "docker": "docker-compose up --build",
       "stop": "docker-compose down"
    }

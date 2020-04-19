@@ -11,7 +11,7 @@ const options: ConnectionOptions = {
   username: "dev",
   password: "dev",
   database: "db",
-  entities: [User,Heart,Eye,Group],
+  entities: [User, Heart, Eye, Group],
   synchronize: true,
 };
 
